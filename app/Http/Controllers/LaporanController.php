@@ -15,7 +15,7 @@ class LaporanController extends Controller
 
     public function print(Request $request)
     {
-        $data = Transaksi::with('jenis_transaksi')
+        $data = Transaksi::with('jenis')
             ->whereBetween('tanggal_transaksi', [$request->start_date, $request->end_date])
             ->orderBy('tanggal_transaksi')
             ->get();

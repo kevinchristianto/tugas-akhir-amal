@@ -45,4 +45,6 @@ Route::middleware('auth')->group(function() {
         Route::get('/', 'LaporanController@index')->name('index');
         Route::get('print', 'LaporanController@print')->name('print');
     });
+
+    Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 });

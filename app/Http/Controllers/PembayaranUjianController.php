@@ -44,7 +44,7 @@ class PembayaranUjianController extends Controller
         $transaksi_data = [
             'jenis_id' => $jenis_transaksi->id,
             'nominal' => $validated['nominal'],
-            'deskripsi' => 'Pembayaran biaya ujian semester ' . $validated['semester'] . ' ' . $validated['tahun'] . 'untuk siswa dengan nama ' . $siswa->nama . ' sebesar Rp' . number_format($validated['nominal']),
+            'deskripsi' => 'Pembayaran biaya ujian semester ' . $validated['semester'] . ' ' . $validated['tahun'] . ' untuk siswa dengan nama ' . $siswa->nama . ' sebesar Rp' . number_format($validated['nominal']),
             'tanggal_transaksi' => $validated['tanggal_bayar'],
             'reference_table' => 'ujian',
             'reference_id' => null

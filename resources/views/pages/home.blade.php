@@ -76,6 +76,34 @@
                         <div class="card-body pb-0"></div>
                     </div>
                 </div>
+                <div class="col-6">
+                    <div class="card card-flush mb-xl-10">
+                        <!--begin::Header-->
+                        <div class="card-header pt-8">
+                            <!--begin::Title-->
+                            <div class="card-title d-flex flex-column">   
+                                <!--begin::Info--> 
+                                <div class="d-flex align-items-center">
+                                    <!--begin::Currency-->
+                                    <span class="fs-4 fw-semibold text-gray-400 me-1 align-self-start">$</span>
+                                    <!--end::Currency-->
+                                    
+                                    <!--begin::Amount-->
+                                    <span class="fs-2hx fw-bold text-dark me-2 lh-1 ls-n2">Rp{{ number_format($pengeluaran) }}</span>
+                                    <!--end::Amount-->
+                                </div>
+                                <!--end::Info--> 
+                                
+                                <!--begin::Subtitle-->
+                                <span class="text-gray-400 pt-1 fw-semibold fs-6">Total Pengeluaran</span>
+                                <!--end::Subtitle--> 
+                            </div>
+                            <!--end::Title-->      
+                        </div>
+                        <!--end::Header-->
+                        <div class="card-body pb-0"></div>
+                    </div>
+                </div>
             </div>
             <!--end::Row-->
         </div>

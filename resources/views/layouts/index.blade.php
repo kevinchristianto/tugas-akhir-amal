@@ -81,9 +81,9 @@
 										<!--end::Avatar-->
 										<!--begin::Username-->
 										<div class="d-flex flex-column">
-											<div class="fw-bold d-flex align-items-center fs-5">Jane Cooper
+											<div class="fw-bold d-flex align-items-center fs-5">{{ Auth::user()->name }}
 											</div>
-											<a href="#" class="fw-semibold text-muted text-hover-primary fs-7">jane@kt.com</a>
+											<a href="#" class="fw-semibold text-muted text-hover-primary fs-7">{{ Auth::user()->email }}</a>
 										</div>
 										<!--end::Username-->
 									</div>
@@ -94,7 +94,7 @@
 								<!--end::Menu separator-->
 								<!--begin::Menu item-->
 								<div class="menu-item px-5">
-									<a href="../dist/authentication/layouts/corporate/sign-in.html" class="menu-link px-5">Sign Out</a>
+									<a href="{{ route('logout') }}" class="menu-link px-5">Sign Out</a>
 								</div>
 								<!--end::Menu item-->
 							</div>

@@ -80,7 +80,7 @@ class GuruController extends Controller
             'alamat' => 'required',
         ]);
 
-        if (Guru::create($validated)) {
+        if ($guru->update($validated)) {
             return redirect('master/guru')->with('success', 'Data guru berhasil diperbarui');
         }
         

@@ -24,5 +24,12 @@ class LoginController extends Controller
             return redirect()->intended('home');
         }
     }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->route('login');
+    }
 }
 

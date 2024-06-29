@@ -42,7 +42,7 @@
     <div align="right">
         <h6>Tanda Tangan</h6>
         <br><br>
-        <h6>Kelompok 2</h6>
+        <h6>Kepala Sekolah</h6>
     </div>
 </body>
 </html>
