@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Siswa;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class SiswaController extends Controller
 {
@@ -12,7 +13,7 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $data = Siswa::all();
+        $data = Siswa::with('waliMurid')->get();
 
         return view('pages.siswa.index', compact('data'));
     }
@@ -30,7 +31,20 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'tahun_ajaran' => 'required|string|max:9',
+            'nis' => 'required|integer|max_digits:10',
+            'nama_lengkap' => 'required|string|max:100',
+            'jenis_kelamin' => 'required|in:L,P',
+            'tempat_lahir' => 'required|string|max:100',
+            'tanggal_lahir' => 'required|date',
+            'email' => 'nullable|string|email|max:100|unique:siswa',
+            'alamat' => 'required|string|max:1000',
+        ]);
+
+        Siswa::create($validated);
+
+        return redirect()->route('master.siswa.index')->with('success', 'Data siswa berhasil ditambahkan!');
     }
 
     /**
@@ -46,7 +60,7 @@ class SiswaController extends Controller
      */
     public function edit(Siswa $siswa)
     {
-        //
+        return view('pages.siswa.edit', compact('siswa'));
     }
 
     /**
@@ -54,7 +68,26 @@ class SiswaController extends Controller
      */
     public function update(Request $request, Siswa $siswa)
     {
-        //
+        $validated = $request->validate([
+            'tahun_ajaran' => 'required|string|max:9',
+            'nis' => 'required|integer|max_digits:10',
+            'nama_lengkap' => 'required|string|max:100',
+            'jenis_kelamin' => 'required|in:L,P',
+            'tempat_lahir' => 'required|string|max:100',
+            'tanggal_lahir' => 'required|date',
+            'email' => [
+                'nullable',
+                'string',
+                'email',
+                'max:100',
+                Rule::unique('siswa')->ignore($siswa->id),
+            ],
+            'alamat' => 'required|string|max:1000',
+        ]);
+
+        $siswa->update($validated);
+
+        return redirect()->route('master.siswa.index')->with('success', 'Data siswa berhasil diperbarui!');
     }
 
     /**

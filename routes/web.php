@@ -6,7 +6,7 @@ use App\Http\Controllers\WaliMuridController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.dashboard.index');
 })->name('dashboard');
 
 Route::name('master.')->prefix('master')->group(function () {

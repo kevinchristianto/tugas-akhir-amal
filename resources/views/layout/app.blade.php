@@ -3,7 +3,7 @@
 <!--begin::Head-->
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>@yield('title', '404') | Payroll Blast</title>
+	<title>@yield('title', '404') | SMK Industri Mandiri</title>
 	<!--begin::Primary Meta Tags-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<!--end::Primary Meta Tags-->
@@ -87,12 +87,13 @@
 				<!--begin::Sidebar Brand-->
 				<div class="sidebar-brand">
 					<!--begin::Brand Link-->
-					<a href="./index.html" class="brand-link">
+					<a href="{{ route('dashboard') }}" class="brand-link">
 						<!--begin::Brand Image-->
 						<img
-							src="{{ asset('assets/img/AdminLTELogo.png') }}"
+							src="{{ asset('assets/img/logo.png') }}"
 							alt="AdminLTE Logo"
 							class="brand-image opacity-75 shadow"
+							style="max-height: 45px;"
 						/>
 						<!--end::Brand Image-->
 						<!--begin::Brand Text-->
@@ -118,6 +119,29 @@
 								<p>Dashboard</p>
 							</a>
 						</li>
+						<li class="nav-item {{ Route::is('transaksi.*') ? 'menu-open' : '' }}">
+							<a href="#" class="nav-link {{ Route::is('transaksi.*') ? 'active' : '' }}">
+								<i class="nav-icon bi bi-cash-coin"></i>
+								<p>
+									Transaksi
+									<i class="nav-arrow bi bi-chevron-right"></i>
+								</p>
+							</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item">
+									<a href="#" class="nav-link {{ Route::is('master.siswa.index') ? 'active' : '' }}">
+										<i class="nav-icon bi bi-chevron-right"></i>
+										<p>Pemasukan</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link {{ Route::is('master.guru.index') ? 'active' : '' }}">
+										<i class="nav-icon bi bi-chevron-right"></i>
+										<p>Pengeluaran</p>
+									</a>
+								</li>
+							</ul>
+						</li>
 						<li class="nav-item {{ Route::is('master.*') ? 'menu-open' : '' }}">
 							<a href="#" class="nav-link {{ Route::is('master.*') ? 'active' : '' }}">
 								<i class="nav-icon bi bi-database"></i>
@@ -127,6 +151,12 @@
 								</p>
 							</a>
 							<ul class="nav nav-treeview">
+								<li class="nav-item">
+									<a href="#" class="nav-link {{ Route::is('master.siswa.index') ? 'active' : '' }}">
+										<i class="nav-icon bi bi-chevron-right"></i>
+										<p>Buku Besar</p>
+									</a>
+								</li>
 								<li class="nav-item">
 									<a href="{{ route('master.siswa.index') }}" class="nav-link {{ Route::is('master.siswa.index') ? 'active' : '' }}">
 										<i class="nav-icon bi bi-chevron-right"></i>
@@ -200,11 +230,20 @@
 			<!--begin::App Content-->
 			<div class="app-content">
 				<div class="container-fluid">
-					@if(session()->has('success') || session()->has('error'))
+					@if (session()->has('success') || session()->has('error'))
 						<div class="alert alert-{{ session()->has('success') ? 'success' : 'danger' }} alert-dismissible fade show" role="alert">
 							{{ session()->get('success') ?? session()->get('error') }}
 							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 						</div>
+					@endif
+
+					@if ($errors->any())
+						@foreach ($errors->all() as $error)
+							<div class="alert alert-danger alert-dismissable fade show" role="alert">
+								{{ $error }}
+								<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+							</div>
+						@endforeach
 					@endif
 				</div>
 				@yield('content')
@@ -222,9 +261,12 @@
 			<!--end::Copyright-->
 		</footer>
 		<!--end::Footer-->
+
+		@yield('modal-section')
 	</div>
 	<!--end::App Wrapper-->
 	<!--begin::Script-->
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 	<!--begin::Third Party Plugin(OverlayScrollbars)-->
 	<script
 	src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.10.1/browser/overlayscrollbars.browser.es6.min.js"
@@ -245,6 +287,7 @@
 	></script>
 	<!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
 	<script src="{{ asset('assets/js/adminlte.js') }}"></script>
+	<script src="{{ asset('assets/js/custom.js') }}"></script>
 	<!--end::Required Plugin(AdminLTE)-->
 	<!--begin::OverlayScrollbars Configure-->
 	<script>
@@ -268,6 +311,7 @@
 		});
 	</script>
 	<!--end::OverlayScrollbars Configure-->
+	@yield('custom-script')
 </body>
 <!--end::Body-->
 </html>

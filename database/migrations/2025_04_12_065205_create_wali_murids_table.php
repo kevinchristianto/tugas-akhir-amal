@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('wali_murid', function (Blueprint $table) {
             $table->id();
-            $table->string('no_hp');
-            $table->string('nama_orang_tua');
+            $table->string('nama_ayah')->nullable();
+            $table->string('nama_ibu')->nullable();
             $table->foreignId('siswa_id')->constrained('siswa')->onDelete('cascade');
-            $table->string('email')->nullable();
+            $table->string('no_hp');
+            $table->string('email');
             $table->timestamps();
         });
     }

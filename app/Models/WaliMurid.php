@@ -10,7 +10,8 @@ class WaliMurid extends Model
 
     protected $fillable = [
         'no_hp',
-        'nama_orang_tua',
+        'nama_ayah',
+        'nama_ibu',
         'siswa_id',
         'email',
     ];

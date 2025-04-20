@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Siswa extends Model
 {
@@ -17,5 +18,11 @@ class Siswa extends Model
         'no_hp',
         'email',
         'alamat',
+        'tahun_ajaran'
     ];
+
+    public function waliMurid(): HasOne
+    {
+        return $this->hasOne(WaliMurid::class);
+    }
 }

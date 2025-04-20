@@ -19,7 +19,6 @@ return new class extends Migration
             $table->enum('jenis_kelamin', ['L', 'P']);
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
-            $table->string('no_hp')->nullable()->unique();
             $table->string('email')->nullable()->unique();
             $table->string('alamat');
             $table->timestamps();

@@ -21,6 +21,18 @@
                         <form action="{{ route('master.siswa.store') }}" method="POST">
                             @csrf
                             <div class="mb-3">
+                                <label for="tahun-ajaran">Tahun Ajaran</label>
+                                <select name="tahun_ajaran" id="tahun-ajaran" class="form-control">
+                                    <option value selected disabled>--- Pilih tahun ajaran ---</option>
+                                    <option>2019/2020</option>
+                                    <option>2020/2021</option>
+                                    <option>2021/2022</option>
+                                    <option>2022/2023</option>
+                                    <option>2023/2024</option>
+                                    <option>2024/2025</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
                                 <label for="nis" class="form-label">NIS</label>
                                 <input type="text" class="form-control" id="nis" name="nis" placeholder="Masukkan NIS siswa" required>
                             </div>
@@ -45,10 +57,6 @@
                                 <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" placeholder="Masukkan tanggal lahir siswa" required>
                             </div>
                             <div class="mb-3">
-                                <label for="no_hp" class="form-label">No HP</label>
-                                <input type="text" class="form-control" id="no_hp" name="no_hp" placeholder="Masukkan No HP siswa" required>
-                            </div>
-                            <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email siswa" required>
                             </div>
@@ -56,7 +64,16 @@
                                 <label for="alamat" class="form-label">Alamat</label>
                                 <textarea name="alamat" id="alamat" cols="30" rows="3" class="form-control" placeholder="Masukkan alamat siswa"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary float-end">Simpan</button>
+                            <div class="d-flex flex-row justify-content-between">
+                                <a href="{{ route('master.siswa.index') }}" class="btn btn-outline-secondary d-flex gap-2">
+                                    <i class="bi bi-arrow-left"></i>
+                                    Kembali
+                                </a>
+                                <button type="submit" class="btn btn-primary d-flex gap-2">
+                                    <i class="bi bi-floppy"></i>
+                                    Simpan
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>

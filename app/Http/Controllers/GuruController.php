@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Guru;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class GuruController extends Controller
 {
@@ -12,7 +13,9 @@ class GuruController extends Controller
      */
     public function index()
     {
-        //
+        $data = Guru::all();
+
+        return view('pages.guru.index', compact('data'));
     }
 
     /**
@@ -20,7 +23,7 @@ class GuruController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.guru.add');
     }
 
     /**
@@ -28,7 +31,17 @@ class GuruController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'nip' => 'required|string',
+            'nama_lengkap' => 'required|string|max:100',
+            'jenis_kelamin' => 'required|in:L,P',
+            'alamat' => 'required|string|max:1000',
+            'no_hp' => 'required|string|unique:guru',
+        ]);
+
+        Guru::create($validated);
+
+        return redirect()->route('master.guru.index')->with('success', 'Data guru berhasil ditambahkan!');
     }
 
     /**
@@ -44,7 +57,7 @@ class GuruController extends Controller
      */
     public function edit(Guru $guru)
     {
-        //
+        return view('pages.guru.edit', compact('guru'));
     }
 
     /**
@@ -52,7 +65,21 @@ class GuruController extends Controller
      */
     public function update(Request $request, Guru $guru)
     {
-        //
+        $validated = $request->validate([
+            'nip' => 'required|string',
+            'nama_lengkap' => 'required|string|max:100',
+            'jenis_kelamin' => 'required|in:L,P',
+            'alamat' => 'required|string|max:1000',
+            'no_hp' => [
+                'required',
+                'string',
+                Rule::unique('siswa')->ignore($guru->id),
+            ]
+        ]);
+
+        $guru->update($validated);
+
+        return redirect()->route('master.guru.index')->with('success', 'Data guru berhasil diperbarui!');
     }
 
     /**
@@ -60,6 +87,8 @@ class GuruController extends Controller
      */
     public function destroy(Guru $guru)
     {
-        //
+        $guru->delete();
+        
+        return redirect()->route('master.guru.index')->with('success', 'Data guru berhasil dihapus!');
     }
 }

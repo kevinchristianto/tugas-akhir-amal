@@ -23,6 +23,7 @@ class SiswaSeeder extends Seeder
                 'no_hp' => '123456789',
                 'email' => 'kevin@gmail.com',
                 'alamat' => 'Jl. Kevin',
+                'tahun_ajaran' => '2024/2025'
             ],
             [
                 'nis' => '123456780',
@@ -33,6 +34,7 @@ class SiswaSeeder extends Seeder
                 'no_hp' => '123456780',
                 'email' => 'john@gmail.com',
                 'alamat' => 'Jl. John',
+                'tahun_ajaran' => '2024/2025'
             ],
         ];
         
