@@ -4,8 +4,8 @@
 
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="#">Home</a></li>
-    <li class="breadcrumb-item" aria-current="page">Master</li>
-    <li class="breadcrumb-item active" aria-current="page">Siswa</li>
+    <li class="breadcrumb-item"><a href="#">Master Data</a></li>
+    <li class="breadcrumb-item" aria-current="page">Murid & Wali Murid</li>
 @endsection
 
 @section('content')
@@ -13,18 +13,18 @@
         <div class="row">
             <div class="col-12">
                 <div class="card card-primary card-outline">
-                    <div class="card-header">
+                    <div class="card-header py-3">
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="card-title">Kelola Data Siswa</h5>
-                            <a href="{{ route('master.siswa.create') }}" class="btn btn-outline-primary d-flex gap-2">
-                                <i class="bi bi-plus-lg"></i>
+                            <a href="{{ route('master.siswa.create') }}" class="btn btn-outline-primary d-flex gap-2 align-items-center">
+                                <i class="ti ti-library-plus"></i>
                                 Siswa Baru
                             </a>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
+                            <table class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -54,16 +54,16 @@
                                             <td>{{ $siswa->waliMurid->nama_ayah ?? '' }} - {{ $siswa->waliMurid->nama_ibu ?? '' }}</td>
                                             <td class="d-flex gap-2 justify-content-center">
                                                 <button class="btn btn-outline-info btn-sm" onclick="return getWaliMurid({{ $siswa->id }})" data-bs-toggle="tooltip" data-bs-title="Kelola Wali Murid" data-bs-placement="top" title="Kelola Data Wali Murid">
-                                                    <i class="bi bi-people"></i>
+                                                    <i class="ti ti-users"></i>
                                                 </button>
                                                 <a href="{{ route('master.siswa.edit', $siswa->id) }}" class="btn btn-outline-primary btn-sm" data-bs-toggle="tooltip" data-bs-title="Edit Data Siswa" data-bs-placement="top" title="Edit Data Siswa">
-                                                    <i class="bi bi-pencil"></i>
+                                                    <i class="ti ti-edit"></i>
                                                 </a>
                                                 <form action="{{ route('master.siswa.destroy', $siswa->id) }}" method="POST" onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?');">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-outline-danger btn-sm" data-bs-toggle="tooltip" data-bs-title="Hapus Data Siswa" data-bs-placement="top" title="Hapus Data Siswa">
-                                                        <i class="bi bi-trash"></i>
+                                                        <i class="ti ti-trash"></i>
                                                     </button>
                                                 </form>
                                             </td>
@@ -109,12 +109,12 @@
                             <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email wali murid" required>
                         </div>
                         <div class="mb-3 d-flex justify-content-between">
-                            <a href="#" class="btn btn-outline-secondary d-flex gap-2" data-bs-dismiss="modal">
+                            <a href="#" class="btn btn-outline-secondary d-flex gap-2 align-items-center" data-bs-dismiss="modal">
                                 <i class="bi bi-x-lg"></i>
                                 Batal
                             </a>
-                            <button class="btn btn-outline-success d-flex gap-2">
-                                <i class="bi bi-floppy"></i>
+                            <button class="btn btn-outline-success d-flex gap-2 align-items-center">
+                                <i class="ti ti-device-floppy"></i>
                                 Simpan
                             </button>
                         </div>

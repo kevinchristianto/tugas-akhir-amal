@@ -12,7 +12,7 @@ class ChartOfAccountController extends Controller
      */
     public function index(Request $request)
     {
-        $data = ChartOfAccount::paginate(10);
+        $data = ChartOfAccount::orderBy('kode_akun')->paginate(10);
 
         return view('pages.akun.index', compact('data'));
     }
@@ -22,7 +22,7 @@ class ChartOfAccountController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.akun.add');
     }
 
     /**

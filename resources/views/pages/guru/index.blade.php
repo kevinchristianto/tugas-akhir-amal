@@ -13,18 +13,18 @@
         <div class="row">
             <div class="col-12">
                 <div class="card card-primary card-outline">
-                    <div class="card-header">
+                    <div class="card-header py-3">
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="card-title">Kelola Data Guru</h5>
-                            <a href="{{ route('master.guru.create') }}" class="btn btn-outline-primary d-flex gap-2">
-                                <i class="bi bi-plus-lg"></i>
+                            <a href="{{ route('master.guru.create') }}" class="btn btn-outline-primary d-flex gap-2 align-items-center">
+                                <i class="ti ti-library-plus"></i>
                                 Guru Baru
                             </a>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
+                            <table class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -48,13 +48,13 @@
                                             <td>{{ $guru->alamat }}</td>
                                             <td class="d-flex gap-2 justify-content-center">
                                                 <a href="{{ route('master.guru.edit', $guru->id) }}" class="btn btn-outline-primary btn-sm">
-                                                    <i class="bi bi-pencil"></i>
+                                                    <i class="ti ti-edit"></i>
                                                 </a>
                                                 <form action="{{ route('master.guru.destroy', $guru->id) }}" method="POST" onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?');">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-outline-danger btn-sm">
-                                                        <i class="bi bi-trash"></i>
+                                                        <i class="ti ti-trash"></i>
                                                     </button>
                                                 </form>
                                             </td>

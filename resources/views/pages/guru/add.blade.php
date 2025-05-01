@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card card-primary card-outline">
-                    <div class="card-header">
+                    <div class="card-header py-3">
                         <h5 class="card-title">Tambah Guru Baru</h5>
                     </div>
                     <div class="card-body">
@@ -45,12 +45,12 @@
                                 <textarea name="alamat" id="alamat" cols="30" rows="3" class="form-control" placeholder="Masukkan alamat guru"></textarea>
                             </div>
                             <div class="d-flex flex-row justify-content-between">
-                                <a href="{{ route('master.guru.index') }}" class="btn btn-outline-secondary d-flex gap-2">
-                                    <i class="bi bi-arrow-left"></i>
+                                <a href="{{ route('master.guru.index') }}" class="btn btn-outline-secondary d-flex gap-2 align-items-center">
+                                    <i class="ti ti-chevron-left"></i>
                                     Kembali
                                 </a>
-                                <button type="submit" class="btn btn-primary d-flex gap-2">
-                                    <i class="bi bi-floppy"></i>
+                                <button type="submit" class="btn btn-primary d-flex gap-2 align-items-center">
+                                    <i class="ti ti-device-floppy"></i>
                                     Simpan
                                 </button>
                             </div>
