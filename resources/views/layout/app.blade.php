@@ -154,7 +154,7 @@
 								<li class="nav-item">
 									<a href="#" class="nav-link {{ Route::is('master.siswa.index') ? 'active' : '' }}">
 										<i class="nav-icon bi bi-chevron-right"></i>
-										<p>Buku Besar</p>
+										<p>Chart of Account</p>
 									</a>
 								</li>
 								<li class="nav-item">
