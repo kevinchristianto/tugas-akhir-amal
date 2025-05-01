@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('chart_of_accounts', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_akun');
+            $table->string('nama_akun');
+            $table->enum('saldo_normal', ['debit', 'kredit']);
+            $table->enum('kategori', ['aset', 'liabilitas', 'ekuitas', 'pendapatan', 'beban']);
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->integer('level')->default(1);
+            $table->string('deskripsi')->nullable();
             $table->timestamps();
         });
     }

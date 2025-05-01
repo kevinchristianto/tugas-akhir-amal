@@ -31,6 +31,7 @@
 		crossorigin="anonymous"
 	/>
 	<!--end::Third Party Plugin(Bootstrap Icons)-->
+	<link rel="stylesheet" href="{{ asset('assets/plugins/datatables/datatables.min.css') }}" />
 	<!--begin::Required Plugin(AdminLTE)-->
 	<link rel="stylesheet" href="{{ asset('assets/css/adminlte.css') }}" />
 	<!--end::Required Plugin(AdminLTE)-->
@@ -152,7 +153,7 @@
 							</a>
 							<ul class="nav nav-treeview">
 								<li class="nav-item">
-									<a href="#" class="nav-link {{ Route::is('master.siswa.index') ? 'active' : '' }}">
+									<a href="{{ route('master.accounts.index') }}" class="nav-link {{ Route::is('master.accounts.index') ? 'active' : '' }}">
 										<i class="nav-icon bi bi-chevron-right"></i>
 										<p>Chart of Account</p>
 									</a>
@@ -266,27 +267,16 @@
 	</div>
 	<!--end::App Wrapper-->
 	<!--begin::Script-->
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
 	<!--begin::Third Party Plugin(OverlayScrollbars)-->
-	<script
-	src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.10.1/browser/overlayscrollbars.browser.es6.min.js"
-	integrity="sha256-dghWARbRe2eLlIJ56wNB+b760ywulqK3DzZYEpsg2fQ="
-	crossorigin="anonymous"
-	></script>
+	<script src="{{ asset('assets/plugins/overlayscroll/overlayscroll.min.js') }}"></script>
 	<!--end::Third Party Plugin(OverlayScrollbars)--><!--begin::Required Plugin(popperjs for Bootstrap 5)-->
-	<script
-	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-	integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-	crossorigin="anonymous"
-	></script>
+	<script src="{{ asset('assets/plugins/popper/popper.min.js') }}"></script>
 	<!--end::Required Plugin(popperjs for Bootstrap 5)--><!--begin::Required Plugin(Bootstrap 5)-->
-	<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-	integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-	crossorigin="anonymous"
-	></script>
+	<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 	<!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
 	<script src="{{ asset('assets/js/adminlte.js') }}"></script>
+	<script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
 	<script src="{{ asset('assets/js/custom.js') }}"></script>
 	<!--end::Required Plugin(AdminLTE)-->
 	<!--begin::OverlayScrollbars Configure-->

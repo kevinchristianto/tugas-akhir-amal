@@ -20,7 +20,6 @@ class SiswaSeeder extends Seeder
                 'jenis_kelamin' => 'L',
                 'tempat_lahir' => 'Jakarta',
                 'tanggal_lahir' => '1995-01-01',
-                'no_hp' => '123456789',
                 'email' => 'kevin@gmail.com',
                 'alamat' => 'Jl. Kevin',
                 'tahun_ajaran' => '2024/2025'
@@ -31,7 +30,6 @@ class SiswaSeeder extends Seeder
                 'jenis_kelamin' => 'L',
                 'tempat_lahir' => 'Jakarta',
                 'tanggal_lahir' => '1995-01-01',
-                'no_hp' => '123456780',
                 'email' => 'john@gmail.com',
                 'alamat' => 'Jl. John',
                 'tahun_ajaran' => '2024/2025'

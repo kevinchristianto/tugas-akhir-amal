@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ChartOfAccount;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 
-class ChartOfAccountController extends Controller
+class TransaksiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $data = ChartOfAccount::paginate(10);
-
-        return view('pages.akun.index', compact('data'));
+        //
     }
 
     /**
@@ -36,7 +34,7 @@ class ChartOfAccountController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ChartOfAccount $chartOfAccount)
+    public function show(Transaksi $transaksi)
     {
         //
     }
@@ -44,7 +42,7 @@ class ChartOfAccountController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ChartOfAccount $chartOfAccount)
+    public function edit(Transaksi $transaksi)
     {
         //
     }
@@ -52,7 +50,7 @@ class ChartOfAccountController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ChartOfAccount $chartOfAccount)
+    public function update(Request $request, Transaksi $transaksi)
     {
         //
     }
@@ -60,7 +58,7 @@ class ChartOfAccountController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ChartOfAccount $chartOfAccount)
+    public function destroy(Transaksi $transaksi)
     {
         //
     }
