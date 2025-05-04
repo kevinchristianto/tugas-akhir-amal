@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('transaksi', function (Blueprint $table) {
             $table->id();
+            $table->string('nomor_transaksi');
             $table->date('tanggal');
             $table->string('deskripsi');
             $table->enum('tipe_transaksi', ['pemasukan', 'pengeluaran']);
-            $table->unsignedBigInteger('total');
+            // $table->unsignedBigInteger('total');
             $table->timestamps();
         });
     }

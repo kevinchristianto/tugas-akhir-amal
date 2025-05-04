@@ -3,6 +3,7 @@
 use App\Http\Controllers\ChartOfAccountController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\WaliMuridController;
 use App\Models\ChartOfAccount;
 use Illuminate\Support\Facades\Route;
@@ -17,3 +18,4 @@ Route::name('master.')->prefix('master')->group(function () {
     Route::resource('guru', GuruController::class);
     Route::resource('account', ChartOfAccountController::class)->parameter('account', 'chartOfAccount');
 });
+Route::resource('transaksi', TransaksiController::class);

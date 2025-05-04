@@ -14,6 +14,9 @@ class ChartOfAccountController extends Controller
     public function index(Request $request)
     {
         $data = ChartOfAccount::orderBy('kode_akun')->paginate(10);
+        $hehe = ChartOfAccount::withSum('detail_transaksi as total_debit', 'debit')
+                ->withSum('detail_transaksi as total_kredit', 'kredit')
+                ->get();
 
         return view('pages.akun.index', compact('data'));
     }
