@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ChartOfAccount;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ChartOfAccountController extends Controller
 {
@@ -30,15 +31,17 @@ class ChartOfAccountController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validated = $request->validate([
+            'kode_akun' => 'required|string|max:10|unique:chart_of_accounts',
+            'nama_akun' => 'required|string|max:100',
+            'saldo_normal' => 'required|in:debit,kredit',
+            'kategori' => 'required|in:aset,liabilitas,ekuitas,pendapatan,beban',
+            'deskripsi' => 'nullable|string|max:1000',
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(ChartOfAccount $chartOfAccount)
-    {
-        //
+        ChartOfAccount::create($validated);
+
+        return redirect()->route('master.account.index')->with('success', 'Akun baru berhasil ditambahkan!');
     }
 
     /**
@@ -46,7 +49,7 @@ class ChartOfAccountController extends Controller
      */
     public function edit(ChartOfAccount $chartOfAccount)
     {
-        //
+        return view('pages.akun.edit', compact('chartOfAccount'));
     }
 
     /**
@@ -54,7 +57,22 @@ class ChartOfAccountController extends Controller
      */
     public function update(Request $request, ChartOfAccount $chartOfAccount)
     {
-        //
+        $validated = $request->validate([
+            'kode_akun' => [
+                'required',
+                'string',
+                'max:10',
+                Rule::unique('chart_of_accounts')->ignore($chartOfAccount->id),
+            ],
+            'nama_akun' => 'required|string|max:100',
+            'saldo_normal' => 'required|in:debit,kredit',
+            'kategori' => 'required|in:aset,liabilitas,ekuitas,pendapatan,beban',
+            'deskripsi' => 'nullable|string|max:1000',
+        ]);
+
+        $chartOfAccount->update($validated);
+
+        return redirect()->route('master.account.index')->with('success', 'Akun berhasil diperbarui!');
     }
 
     /**
@@ -62,6 +80,8 @@ class ChartOfAccountController extends Controller
      */
     public function destroy(ChartOfAccount $chartOfAccount)
     {
-        //
+        $chartOfAccount->delete();
+
+        return redirect()->route('master.account.index')->with('success', 'Akun berhasil dihapus!');
     }
 }

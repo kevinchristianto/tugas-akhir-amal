@@ -13,7 +13,7 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $data = Siswa::with('waliMurid')->get();
+        $data = Siswa::with('waliMurid')->paginate(10);
 
         return view('pages.siswa.index', compact('data'));
     }

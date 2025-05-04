@@ -66,13 +66,14 @@
                             </table>
                         </div>
                         <div class="d-flex flex-column gap-1">
+                            <h6 class="mb-0">Saldo Normal Kategori</h6>
                             <div class="d-flex gap-2 align-items-center">
                                 <div class="bg-success rounded-1" style="width: 15px; height: 15px;">&nbsp;</div>
-                                <small>Saldo normal debit</small>
+                                <small>Debit</small>
                             </div>
                             <div class="d-flex gap-2 align-items-center">
                                 <div class="bg-danger rounded-1" style="width: 15px; height: 15px;">&nbsp;</div>
-                                <small>Saldo normal kredit</small>
+                                <small>Kredit</small>
                             </div>
                         </div>
                         {{ $data->links() }}

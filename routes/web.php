@@ -15,5 +15,5 @@ Route::name('master.')->prefix('master')->group(function () {
     Route::resource('siswa', SiswaController::class);
     Route::resource('wali_murid', WaliMuridController::class);
     Route::resource('guru', GuruController::class);
-    Route::resource('account', ChartOfAccountController::class);
+    Route::resource('account', ChartOfAccountController::class)->parameter('account', 'chartOfAccount');
 });

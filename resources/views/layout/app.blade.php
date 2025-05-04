@@ -2,7 +2,7 @@
 <html lang="en">
 <!-- [Head] start -->
 <head>
-    <title>Dashboard | Berry Dashboard Template</title>
+    <title>@yield('title', '404') | SMK Industri Mandiri</title>
     <!-- [Meta] -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
@@ -189,25 +189,27 @@
             @endif
             
             <!-- [ Main Content ] start -->
-           <div class="row">
+            <div class="row">
                 @if (session()->has('success') || session()->has('error'))
-                    <div class="alert alert-{{ session()->has('success') ? 'success' : 'danger' }} alert-dismissible fade show" role="alert">
-                        {{ session()->get('success') ?? session()->get('error') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <div class="col-12">
+                        <div class="alert alert-{{ session()->has('success') ? 'success' : 'danger' }} alert-dismissible fade show" role="alert">
+                            {{ session()->get('success') ?? session()->get('error') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
                     </div>
                 @endif
 
                 @if ($errors->any())
                     @foreach ($errors->all() as $error)
-                        <div class="alert alert-danger alert-dismissable fade show" role="alert">
-                            {{ $error }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <div class="col-12">
+                            <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                                {{ $error }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
                         </div>
                     @endforeach
                 @endif
-           </div>
-            
-            <div class="row">
+
                 @yield('content')
             </div>
             <!-- [ Main Content ] end -->

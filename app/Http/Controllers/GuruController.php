@@ -13,7 +13,7 @@ class GuruController extends Controller
      */
     public function index()
     {
-        $data = Guru::all();
+        $data = Guru::paginate(10);
 
         return view('pages.guru.index', compact('data'));
     }
