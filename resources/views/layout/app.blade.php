@@ -7,6 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <base href="{{ url('/') }}">
     
     <!-- [Favicon] icon -->
     <link rel="icon" href="{{ asset('assets/images/favicon.svg') }}" type="image/x-icon" />
@@ -26,6 +27,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" id="main-style-link" />
     <link rel="stylesheet" href="{{ asset('assets/css/style-preset.css') }}" />
     
+    @yield('custom-style')
 </head>
 <!-- [Head] end -->
 <!-- [Body] Start -->
@@ -63,6 +65,14 @@
                         <i class="ti ti-device-desktop-dollar"></i>
                     </li>
                     <li class="pc-item">
+                        <a href="{{ route('transaksi.index') }}" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ti ti-cash-register"></i>
+                            </span>
+                            <span class="pc-mtext">Jurnal Umum</span>
+                        </a>
+                    </li>
+                    {{-- <li class="pc-item">
                         <a href="#" class="pc-link">
                             <span class="pc-micon">
                                 <i class="ti ti-coin"></i>
@@ -77,7 +87,7 @@
                             </span>
                             <span class="pc-mtext">Pengeluaran</span>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li class="pc-item pc-caption">
                         <label>Master Data</label>
@@ -191,7 +201,7 @@
             <!-- [ Main Content ] start -->
            <div class="row">
                 @if (session()->has('success') || session()->has('error'))
-                    <div class="alert alert-{{ session()->has('success') ? 'success' : 'danger' }} alert-dismissible fade show" role="alert">
+                    <div class="col-12 alert alert-{{ session()->has('success') ? 'success' : 'danger' }} alert-dismissible fade show" role="alert">
                         {{ session()->get('success') ?? session()->get('error') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
@@ -199,7 +209,7 @@
 
                 @if ($errors->any())
                     @foreach ($errors->all() as $error)
-                        <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                        <div class="col-12 alert alert-danger alert-dismissable fade show" role="alert">
                             {{ $error }}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
@@ -229,6 +239,7 @@
     @yield('modal-section')
     
     <!-- Required Js -->
+    <script src="{{ asset('assets/js/plugins/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/simplebar.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/bootstrap.min.js') }}"></script>
@@ -244,6 +255,8 @@
         layout_rtl_change('false');
         preset_change('preset-1');
     </script>
+
+    @yield('custom-script')
 </body>
 <!-- [Body] end -->
 </html>

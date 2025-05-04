@@ -89,7 +89,7 @@ class ChartOfAccountSeeder extends Seeder
                 'kategori' => 'ekuitas',
                 'parent_id' => null,
                 'level' => 1,
-                'deskripsi' => 'Akumulasi laba tahun.tahun sebelumnya',
+                'deskripsi' => 'Akumulasi laba tahun-tahun sebelumnya',
             ],
 
             // ===== PENDAPATAN =====

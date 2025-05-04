@@ -214,9 +214,10 @@ function layout_change(layout) {
   dark_flag = isDark;
 
   // Update logo images based on the layout
-  const logoPaths = isDark ? '../assets/images/logo-white.png' : '../assets/images/logo-dark.png';
+  const url = $('base').attr('href')
+  const logoPaths = isDark ? url + '/assets/images/logo-white.png' : url + '/assets/images/logo-dark.png';
 
-  const landingLogoPath = isDark ? 'assets/images/logo-white.png' : 'assets/images/logo-dark.png';
+  const landingLogoPath = isDark ? url + '/assets/images/logo-white.png' : url + '/assets/images/logo-dark.png';
 
   const logoSelectors = [
     '.pc-sidebar .m-header .logo-lg',

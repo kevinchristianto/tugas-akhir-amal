@@ -48,7 +48,7 @@
                                             <td>{{ $siswa->nis }}</td>
                                             <td>{{ $siswa->nama_lengkap }}</td>
                                             <td>{{ $siswa->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
-                                            <td>{{ $siswa->tempat_lahir . ', ' . $siswa->tanggal_lahir }}</td>
+                                            <td>{{ $siswa->tempat_lahir . ', ' . date_format(date_create($siswa->tanggal_lahir), 'd F Y') }}</td>
                                             <td>{{ $siswa->email }}</td>
                                             <td>{{ $siswa->alamat }}</td>
                                             <td>{{ $siswa->waliMurid->nama_ayah ?? '' }} - {{ $siswa->waliMurid->nama_ibu ?? '' }}</td>
