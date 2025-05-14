@@ -33,12 +33,13 @@
                                         <th>Kode Akun</th>
                                         <th>Nama Akun</th>
                                         <th>Deskripsi</th>
+                                        <th class="text-end">Saldo</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php $no = $data->firstItem() @endphp
                                     @foreach($data as $akun)
-                                        <tr>
+                                        <tr class="py-0">
                                             <td class="d-flex gap-2 justify-content-center">
                                                 <a href="{{ route('master.account.edit', $akun->id) }}" class="btn btn-outline-primary btn-sm">
                                                     <i class="ti ti-edit"></i>
@@ -60,6 +61,9 @@
                                             <td>{{ $akun->kode_akun }}</td>
                                             <td>{{ $akun->nama_akun }}</td>
                                             <td>{{ $akun->deskripsi }}</td>
+                                            <td class="text-end">
+                                                <h5>Rp{{ number_format($akun->saldo_optimized) }}</h5>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

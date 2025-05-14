@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
@@ -17,8 +18,23 @@ class ChartOfAccount extends Model
         'parent_id',
         'level',
     ];
+
     public function detail_transaksi(): HasMany
     {
         return $this->hasMany(DetailTransaksi::class);
+    }
+
+    public function saldoOptimized(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                $debit = $this->total_debit ?? 0;
+                $kredit = $this->total_kredit ?? 0;
+
+                return $this->saldo_normal == 'debit'
+                    ? $debit - $kredit
+                    : $kredit - $debit;
+            }
+        );
     }
 }

@@ -53,11 +53,11 @@
                                 <textarea name="deskripsi" id="deskripsi" rows="2" class="form-control" placeholder="Masukkan deskripsi akun">{{ $chartOfAccount->deskripsi }}</textarea>
                             </div>
                             <div class="d-flex flex-row justify-content-between">
-                                <a href="{{ route('master.account.index') }}" class="btn btn-outline-secondary d-flex gap-2">
+                                <a href="{{ route('master.account.index') }}" class="btn btn-outline-secondary d-flex gap-2 align-items-center">
                                     <i class="ti ti-chevron-left"></i>
                                     Kembali
                                 </a>
-                                <button type="submit" class="btn btn-primary d-flex gap-2">
+                                <button type="submit" class="btn btn-primary d-flex gap-2 align-items-center">
                                     <i class="ti ti-device-floppy"></i>
                                     Simpan
                                 </button>

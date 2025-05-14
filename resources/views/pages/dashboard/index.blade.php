@@ -18,7 +18,7 @@
                             </div>
                         </div>
                         <span class="d-block f-34 f-w-800 my-2 text-gray-700">
-                            500
+                            {{ number_format($total_siswa) }}
                         </span>
                         <h4 class="mb-0 opacity-50">Jumlah Siswa Terdaftar</h4>
                     </div>
@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <span class="d-block f-34 f-w-800 my-2 text-gray-700">
-                            24
+                            {{ number_format($total_guru) }}
                         </span>
                         <h4 class="mb-0 opacity-50">Jumlah Guru Terdaftar</h4>
                     </div>
@@ -56,7 +56,7 @@
                             </div>
                         </div>
                         <span class="text-white d-block f-34 f-w-800 my-2">
-                            Rp5.000.000
+                            Rp{{ number_format($pemasukan) }}
                         </span>
                         <h4 class="mb-0 opacity-50 text-white">Total Pemasukan Bulan Ini</h4>
                     </div>
@@ -75,7 +75,7 @@
                             </div>
                         </div>
                         <span class="text-white d-block f-34 f-w-800 my-2">
-                            Rp4.000.000
+                            Rp{{ number_format($pengeluaran) }}
                         </span>
                         <h4 class="mb-0 opacity-50 text-white">Total Pengeluaran Bulan Ini</h4>
                     </div>

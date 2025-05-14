@@ -24,34 +24,21 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-hover" style="table-layout: auto; width: 100%;">
+                            <table class="table table-hover table-sm" style="table-layout: auto; width: 100%;">
                                 <thead>
                                     <tr>
-                                        {{-- <th class="text-center" style="white-space: nowrap; width: 1%;">Aksi</th> --}}
                                         <th>Kode Transaksi</th>
                                         <th>Tanggal</th>
                                         <th>Deskripsi</th>
                                         <th>Akun</th>
                                         <th>Debit</th>
                                         <th>Kredit</th>
+                                        <th>Keterangan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($data as $item)
                                         <tr>
-                                            {{-- <td class="d-flex gap-2 justify-content-center">
-                                                <a href="{{ route('transaksi.edit', $item->id) }}" class="btn btn-outline-primary btn-sm">
-                                                    <i class="ti ti-edit"></i>
-                                                </a>
-                                                <form action="{{ route('transaksi.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?');">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-outline-danger btn-sm">
-                                                        <i class="ti ti-trash"></i>
-                                                    </button>
-                                                </form>
-                                            </td> --}}
-                                            {{-- <td>&nbsp;</td> --}}
                                             <td rowspan="3">{{ $item->nomor_transaksi }}</td>
                                             <td rowspan="3">{{ $item->tanggal }}</td>
                                             <td rowspan="3">{{ $item->deskripsi }}</td>
@@ -61,21 +48,12 @@
                                                 <td>{{ $detail->akun->kode_akun }} - {{ $detail->akun->nama_akun }}</td>
                                                 <td>Rp{{ number_format($detail->debit) }}</td>
                                                 <td>Rp{{ number_format($detail->kredit) }}</td>
+                                                <td>{{ $detail->deskripsi }}</td>
                                             </tr>
                                         @endforeach
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div>
-                        <div class="d-flex flex-column gap-1">
-                            <div class="d-flex gap-2 align-items-center">
-                                <div class="bg-success rounded-1" style="width: 15px; height: 15px;">&nbsp;</div>
-                                <small>Saldo normal debit</small>
-                            </div>
-                            <div class="d-flex gap-2 align-items-center">
-                                <div class="bg-danger rounded-1" style="width: 15px; height: 15px;">&nbsp;</div>
-                                <small>Saldo normal kredit</small>
-                            </div>
                         </div>
                         {{ $data->links() }}
                     </div>
@@ -120,7 +98,7 @@
                             <label for="deskripsi" class="form-label">Deskripsi</label>
                             <textarea name="deskripsi" id="deskripsi" class="form-control" rows="2" required placeholder="Masukkan deskripsi"></textarea>
                         </div>
-                        <table class="table table-striped mb-3" id="transaksi-table">
+                        <table class="table table-striped table-sm mb-3" id="transaksi-table">
                             <thead>
                                 <tr>
                                     <th style="width: 30%">Akun</th>
@@ -141,13 +119,13 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <input type="number" name="debit[]" class="form-control" required value="0">
+                                            <input type="text" name="debit[]" class="form-control currency" required value="0">
                                         </td>
                                         <td>
-                                            <input type="number" name="kredit[]" class="form-control" required value="0">
+                                            <input type="text" name="kredit[]" class="form-control currency" required value="0">
                                         </td>
                                         <td>
-                                            <textarea name="keterangan[]" class="form-control" rows="2" required placeholder="Masukkan keterangan"></textarea>
+                                            <textarea name="keterangan[]" class="form-control" rows="2" placeholder="Tidak ada keterangan"></textarea>
                                         </td>
                                     </tr>
                                 @endfor
@@ -175,9 +153,24 @@
 @endsection
 
 @section('custom-script')
+    <script src="{{ asset('assets/plugins/inputmask/jquery.inputmask.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/selectize/selectize.min.js') }}"></script>
     <script>
         let options = {}
         $('select.form-control').selectize(options)
+
+        $(document).ready(function () {
+            $('.currency').inputmask({
+                'alias': 'currency',
+                'removeMaskOnSubmit': true,
+                'autoUnmask': true,
+                'digits': 2,
+                'prefix': 'Rp',
+                'rightAlign': false,
+                'groupSeparator': '.',
+                'radixPoint': ',',
+                'digitsOptional': true,
+            })
+        })
     </script>
 @endsection

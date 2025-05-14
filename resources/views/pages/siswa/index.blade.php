@@ -111,7 +111,7 @@
                         </div>
                         <div class="mb-3 d-flex justify-content-between">
                             <a href="#" class="btn btn-outline-secondary d-flex gap-2 align-items-center" data-bs-dismiss="modal">
-                                <i class="bi bi-x-lg"></i>
+                                <i class="ti ti-x"></i>
                                 Batal
                             </a>
                             <button class="btn btn-outline-success d-flex gap-2 align-items-center">

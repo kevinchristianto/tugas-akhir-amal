@@ -65,6 +65,14 @@
                         <i class="ti ti-device-desktop-dollar"></i>
                     </li>
                     <li class="pc-item">
+                        <a href="{{ route('transaksi.spp') }}" class="pc-link">
+                            <span class="pc-micon">
+                                <i class="ti ti-receipt-dollar"></i>
+                            </span>
+                            <span class="pc-mtext">Pembayaran SPP</span>
+                        </a>
+                    </li>
+                    <li class="pc-item">
                         <a href="{{ route('transaksi.index') }}" class="pc-link">
                             <span class="pc-micon">
                                 <i class="ti ti-cash-register"></i>
