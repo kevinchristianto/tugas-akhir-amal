@@ -7,9 +7,10 @@ use App\Models\ChartOfAccount;
 use App\Models\DetailTransaksi;
 use App\Models\Siswa;
 use App\Models\Transaksi;
-use App\Models\TransaksiSPP;
+use App\Models\TransaksiPendapatan;
 use App\Models\WaliMurid;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
@@ -71,9 +72,9 @@ class TransaksiController extends Controller
         return redirect()->route('transaksi.index')->with('success', 'Jurnal umum berhasil ditambahkan!');
     }
 
-    public function spp()
+    public function pendapatan()
     {
-        $akun_spp = ChartOfAccount::where('kategori', 'pendapatan')->where('nama_akun', 'LIKE', '%SPP%')->get();
+        $akun_pendapatan = ChartOfAccount::where('kategori', 'pendapatan')->where('kategori', 'pendapatan')->get();
         $akun_kas = ChartOfAccount::where('kategori', 'aset')->get();
         $siswa = Siswa::all();
         
@@ -83,34 +84,36 @@ class TransaksiController extends Controller
         $count_trx = str_pad($count_trx, 4, '0', STR_PAD_LEFT);
         $nomor_transaksi = $trx_date . '.' . $count_trx;
 
-        return view('pages.transaksi.spp', compact('nomor_transaksi', 'akun_kas', 'siswa', 'akun_spp'));
+        return view('pages.transaksi.pendapatan', compact('nomor_transaksi', 'akun_kas', 'siswa', 'akun_pendapatan'));
     }
 
-    public function store_spp(Request $request)
+    public function store_pendapatan(Request $request)
     {
         $validated = $request->validate([
             'tanggal' => 'required|date',
             'nomor_transaksi' => 'required',
             'siswa_id' => 'required|exists:siswa,id',
-            'akun_spp' => 'required|exists:chart_of_accounts,id',
+            'akun_pendapatan' => 'required|exists:chart_of_accounts,id',
             'akun_kas' => 'required|exists:chart_of_accounts,id',
             'nominal' => 'required|numeric',
+            'deskripsi' => 'required|string'
         ]);
         $siswa = Siswa::find($validated['siswa_id']);
         $transaksi = Transaksi::create([
             'tanggal' => $validated['tanggal'],
             'nomor_transaksi' => $validated['nomor_transaksi'],
-            'deskripsi' => $validated['deskripsi'] ?? 'Pembayaran SPP untuk siswa a.n. ' . $siswa->nama_lengkap . ' sebesar Rp' . number_format($validated['nominal']),
+            'deskripsi' => $validated['deskripsi'],
             'tipe_transaksi' => 'pemasukan',
         ]);
-        $spp = TransaksiSPP::create([
+        $pendapatan = TransaksiPendapatan::create([
             'siswa_id' => $validated['siswa_id'],
             'transaksi_id' => $transaksi->id,
+            'chart_of_account_id' => $validated['akun_pendapatan'],
         ]);
         $detail_transaksi = DetailTransaksi::upsert([
             [
                 'transaksi_id' => $transaksi->id,
-                'chart_of_account_id' => $validated['akun_spp'],
+                'chart_of_account_id' => $validated['akun_pendapatan'],
                 'kredit' => $validated['nominal'],
                 'debit' => 0,
                 'deskripsi' => 'Tidak ada keterangan',
@@ -126,15 +129,16 @@ class TransaksiController extends Controller
 
         if (!$detail_transaksi) {
             $transaksi->delete();
-            $spp->delete();
+            $pendapatan->delete();
 
-            return redirect()->route('transaksi.spp')->with('error', 'Pembayaran SPP gagal ditambahkan!');
+            return redirect()->route('transaksi.pendapatan')->with('error', 'Pembayaran pendapatan gagal ditambahkan!');
         }
 
         $data = [
-            ...$spp->toArray(),
+            ...$pendapatan->toArray(),
             'siswa' => $siswa->toArray(),
             'transaksi' => $transaksi->toArray(),
+            'nominal' => $validated['nominal']
         ];
 
         return $this->send_kuitansi($data);
@@ -142,15 +146,18 @@ class TransaksiController extends Controller
 
     public function send_kuitansi($data)
     {
-        preg_match('/Rp\s?\d{1,3}(?:[.,]\d{3})*(?:[.,]\d+)?/', $data['transaksi']['deskripsi'], $nominal);
-        $cleaned_nominal = preg_replace('/Rp\s?/', '', $nominal[0]);
-        $normalized_nominal = preg_replace('/[.,]/', '', $cleaned_nominal);
-        $terbilang = ucwords(Terbilang::convert($normalized_nominal) . ' rupiah');
+        $akun = ChartOfAccount::find($data['chart_of_account_id']);
+        $nama_akun = str_replace('Pendapatan ', '', $akun->nama_akun);
+        // preg_match('/Rp\s?\d{1,3}(?:[.,]\d{3})*(?:[.,]\d+)?/', $data['transaksi']['deskripsi'], $nominal);
+        // $cleaned_nominal = preg_replace('/Rp\s?/', '', $nominal[0]);
+        // $normalized_nominal = preg_replace('/[.,]/', '', $cleaned_nominal);
+        $terbilang = ucwords(Terbilang::convert($data['nominal']) . ' rupiah');
 
-        $data['nominal'] = $nominal[0];
         $data['terbilang'] = $terbilang;
         $data['printed_at'] = now()->format('d F Y, H:i:s');
+        $data['nama_akun'] = $nama_akun;
         $pdf = Pdf::loadView('pages.print.kuitansi', $data);
+        return $pdf->stream();
 
         $month = now()->format('F Y');
         if (!Storage::disk('local')->exists('kuitansi/' . $month)) {

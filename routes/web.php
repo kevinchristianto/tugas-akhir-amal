@@ -20,7 +20,7 @@ Route::name('master.')->prefix('master')->group(function () {
 
 Route::resource('transaksi', TransaksiController::class)->only(['index', 'store']);
 
-Route::get('transaksi/spp', [TransaksiController::class, 'spp'])->name('transaksi.spp');
-Route::post('transaksi/spp', [TransaksiController::class, 'store_spp'])->name('transaksi.store_spp');
+Route::get('transaksi/pendapatan', [TransaksiController::class, 'pendapatan'])->name('transaksi.pendapatan');
+Route::post('transaksi/pendapatan', [TransaksiController::class, 'store_pendapatan'])->name('transaksi.store_pendapatan');
 
 Route::get('print-spp', [TransaksiController::class, 'stream_spp'])->name('stream-spp');

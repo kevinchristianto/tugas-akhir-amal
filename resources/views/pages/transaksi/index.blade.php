@@ -77,20 +77,20 @@
                         @method('post')
                         <div class="row mb-3">
                             <div class="col-12 col-md-4">
-                                <label for="tanggal" class="form-label">Tanggal</label>
-                                <input type="date" class="form-control" id="tanggal" name="tanggal" required value="{{ date('Y-m-d') }}">
-                            </div>
-                            <div class="col-12 col-md-4">
                                 <label for="nomor-transaksi" class="form-label">Kode Transaksi</label>
                                 <input type="text" class="form-control" id="nomor-transaksi" name="nomor_transaksi" required readonly value="{{ $nomor_transaksi }}">
                                 <small class="text-muted">Kode transaksi di-generate secara otomatis</small>
                             </div>
                             <div class="col-12 col-md-4">
+                                <label for="tanggal" class="form-label">Tanggal</label>
+                                <input type="date" class="form-control" id="tanggal" name="tanggal" required value="{{ date('Y-m-d') }}">
+                            </div>
+                            <div class="col-12 col-md-4">
                                 <label for="jenis-transaksi" class="form-label">Jenis Transaksi</label>
                                 <select name="jenis_transaksi" class="form-control" required>
                                     <option value selected disabled>--- Pilih jenis transaksi ---</option>
-                                    <option value="pemasukan">Pemasukan</option>
-                                    <option value="pengeluaran">Pengeluaran</option>
+                                    <option value="pemasukan">Kas Masuk</option>
+                                    <option value="pengeluaran">Kas Keluar</option>
                                 </select>
                             </div>
                         </div>

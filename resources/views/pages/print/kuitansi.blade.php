@@ -94,41 +94,45 @@
 
         <table style="margin-top: 1rem;" class="detail">
             <tr>
-                <td colspan="2" class="text-center" style="border-top: 4px double #333; border-bottom: 1px solid #333;">
-                    <h3 style="margin: 0">BUKTI PEMBAYARAN SPP</h3>
+                <td colspan="3" class="text-center" style="border-top: 4px double #333; border-bottom: 1px solid #333;">
+                    <h3 style="margin: 0">BUKTI PEMBAYARAN</h3>
                 </td>
             </tr>
             <tr>
-                <td style="width: 50mm;">NO TRANSAKSI</td>
+                <td colspan="2" style="width: 50mm;">NO TRANSAKSI</td>
                 <td>: {{ $transaksi['nomor_transaksi'] }}</td>
             </tr>
             <tr>
-                <td>TANGGAL</td>
+                <td colspan="2">TANGGAL</td>
                 <td>: {{ $transaksi['tanggal'] }}</td>
             </tr>
             <tr>
-                <td>NIS</td>
+                <td colspan="2">NIS</td>
                 <td>: {{ $siswa['nis'] }}</td>
             </tr>
             <tr>
-                <td>NAMA SISWA</td>
+                <td colspan="2">NAMA SISWA</td>
                 <td>: {{ $siswa['nama_lengkap'] }}</td>
             </tr>
             <tr>
-                <td>TAHUN AJARAN</td>
+                <td colspan="2">TAHUN AJARAN</td>
                 <td>: {{ $siswa['tahun_ajaran'] }}</td>
             </tr>
             <tr>
-                <td>JAM CETAK</td>
+                <td colspan="2">JAM CETAK</td>
                 <td>: {{ $printed_at }}</td>
             </tr>
-            <tr>
-                <td colspan="2" style="padding: 2mm 0; border-top: 1px solid #333; border-bottom: 1px solid #333; text-align: right">
-                    <h3 style="margin: 0">{{ $nominal }}</h3>
+            <tr style="border-top: 1px solid #333">
+                <td colspan="2" style="padding: 1mm 0 1mm 10mm">
+                    <h3 style="margin: 0"> Biaya {{ $nama_akun }}</h3>
+                    {{ $transaksi['deskripsi'] }}
+                </td>
+                <td style="text-align: right; padding: 1mm 10mm 1mm 0">
+                    <h3 style="margin: 0">Rp{{ number_format($nominal) }}</h3>
                 </td>
             </tr>
             <tr>
-                <td colspan="2" style="padding: 2mm 0; border-top: 1px solid #333; border-bottom: 1px solid #333;">
+                <td colspan="3" style="padding: 1mm 10mm; border-top: 1px solid #333; border-bottom: 1px solid #333;">
                     <strong>TERBILANG:</strong>
                     {{ $terbilang }}
                 </td>
@@ -136,7 +140,7 @@
         </table>
 
         <div style="margin-top: 3mm">
-            Bukti pembayaran ini merupakan bukti resmi status pembayaran SPP siswa yang sah dan dibuat otomatis oleh sistem. Anda dapat mencetak bukti pembayaran ini atau menyimpannya dalam format PDF sebagai arsip.
+            Bukti pembayaran ini merupakan bukti pembayaran yang sah dan dibuat otomatis oleh sistem. Anda dapat mencetak bukti pembayaran ini atau menyimpannya dalam format PDF sebagai arsip.
         </div>
 
         <table style="width: 40mm; margin-left: auto; margin-top: 5mm;" class="text-center">

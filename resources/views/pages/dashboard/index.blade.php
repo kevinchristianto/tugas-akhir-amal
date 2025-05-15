@@ -58,7 +58,7 @@
                         <span class="text-white d-block f-34 f-w-800 my-2">
                             Rp{{ number_format($pemasukan) }}
                         </span>
-                        <h4 class="mb-0 opacity-50 text-white">Total Pemasukan Bulan Ini</h4>
+                        <h4 class="mb-0 opacity-50 text-white">Kas Masuk Bulan Ini</h4>
                     </div>
                 </div>
             </div>
@@ -77,7 +77,7 @@
                         <span class="text-white d-block f-34 f-w-800 my-2">
                             Rp{{ number_format($pengeluaran) }}
                         </span>
-                        <h4 class="mb-0 opacity-50 text-white">Total Pengeluaran Bulan Ini</h4>
+                        <h4 class="mb-0 opacity-50 text-white">Kas Keluar Bulan Ini</h4>
                     </div>
                 </div>
             </div>

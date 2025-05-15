@@ -1,11 +1,11 @@
 @extends('layout.app')
 
-@section('title', 'Pembayaran SPP')
+@section('title', 'Administrasi Siswa')
 
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="#">Home</a></li>
     <li class="breadcrumb-item" aria-current="page">Transaksi</li>
-    <li class="breadcrumb-item active" aria-current="page">Pembayaran SPP</li>
+    <li class="breadcrumb-item active" aria-current="page">Administrasi Siswa</li>
 @endsection
 
 @section('content')
@@ -14,21 +14,21 @@
             <div class="col-12">
                 <div class="card card-primary card-outline">
                     <div class="card-header">
-                        <h5 class="card-title">Pembayaran SPP</h5>
+                        <h5 class="card-title">Administrasi Siswa</h5>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('transaksi.store_spp') }}" method="post">
+                        <form action="{{ route('transaksi.store_pendapatan') }}" method="post">
                             @csrf
                             @method('post')
                             <div class="row mb-3">
                                 <div class="col-12 col-lg-4 col-md-6 mb-3">
-                                    <label for="tanggal" class="form-label">Tanggal Diterima</label>
-                                    <input type="date" class="form-control" id="tanggal" name="tanggal" required value="{{ date('Y-m-d') }}">
-                                </div>
-                                <div class="col-12 col-lg-4 col-md-6 mb-3">
                                     <label for="nomor-transaksi" class="form-label">Kode Transaksi</label>
                                     <input type="text" class="form-control" id="nomor-transaksi" name="nomor_transaksi" required readonly value="{{ $nomor_transaksi }}">
                                     <small class="text-muted">Kode transaksi di-generate secara otomatis</small>
+                                </div>
+                                <div class="col-12 col-lg-4 col-md-6 mb-3">
+                                    <label for="tanggal" class="form-label">Tanggal Diterima</label>
+                                    <input type="date" class="form-control" id="tanggal" name="tanggal" required value="{{ date('Y-m-d') }}">
                                 </div>
                                 <div class="col-12 col-lg-4 col-md-6 mb-3">
                                     <label for="nama-siswa" class="form-label">Nama Siswa</label>
@@ -40,15 +40,16 @@
                                     </select>
                                 </div>
                                 <div class="col-12 col-lg-4 col-md-6 mb-3">
-                                    <label for="akun-spp" class="form-label">Akun Keuangan SPP</label>
-                                    <select name="akun_spp" id="akun-spp" class="form-control" required>
-                                        @foreach ($akun_spp as $spp)
-                                            <option value="{{ $spp->id }}">{{ $spp->kode_akun }} - {{ $spp->nama_akun }}</option>
+                                    <label for="akun-pendapatan" class="form-label">Transaksi</label>
+                                    <select name="akun_pendapatan" id="akun-pendapatan" class="form-control" required>
+                                        <option value selected disabled>--- Pilih transaksi ---</option>
+                                        @foreach ($akun_pendapatan as $pendapatan)
+                                            <option value="{{ $pendapatan->id }}">{{ str_replace('Pendapatan ', '', $pendapatan->nama_akun) }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="col-12 col-lg-4 col-md-6 mb-3">
-                                    <label for="akun-kas" class="form-label">Akun Keuangan Kas</label>
+                                    <label for="akun-kas" class="form-label">Akun Kas</label>
                                     <select name="akun_kas" id="akun-kas" class="form-control" required>
                                         <option value selected disabled>--- Pilih kas masuknya uang ---</option>
                                         @foreach ($akun_kas as $kas)
@@ -59,6 +60,10 @@
                                 <div class="col-12 col-lg-4 col-md-6 mb-3">
                                     <label for="nominal" class="form-label">Nominal</label>
                                     <input type="text" class="form-control currency" id="nominal" name="nominal" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="deskripsi">Deskripsi/Keterangan</label>
+                                    <textarea name="deskripsi" id="deskripsi" class="form-control" rows="2" required placeholder="Pembayaran SPP bulan April"></textarea>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end gap-2">
