@@ -13,16 +13,8 @@
     <link rel="icon" href="{{ asset('assets/images/favicon.svg') }}" type="image/x-icon" />
     <!-- [Google Font] Family -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" id="main-font-link" />
-    <!-- [phosphor Icons] https://phosphoricons.com/ -->
-    <link rel="stylesheet" href="{{ asset('assets/fonts/phosphor/duotone/style.css') }}" />
     <!-- [Tabler Icons] https://tablericons.com -->
     <link rel="stylesheet" href="{{ asset('assets/fonts/tabler-icons.min.css') }}" />
-    <!-- [Feather Icons] https://feathericons.com -->
-    <link rel="stylesheet" href="{{ asset('assets/fonts/feather.css') }}" />
-    <!-- [Font Awesome Icons] https://fontawesome.com/icons -->
-    <link rel="stylesheet" href="{{ asset('assets/fonts/fontawesome.css') }}" />
-    <!-- [Material Icons] https://fonts.google.com/icons -->
-    <link rel="stylesheet" href="{{ asset('assets/fonts/material.css') }}" />
     <!-- [Template CSS Files] -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" id="main-style-link" />
     <link rel="stylesheet" href="{{ asset('assets/css/style-preset.css') }}" />
@@ -72,59 +64,78 @@
                             <span class="pc-mtext">Administrasi Siswa</span>
                         </a>
                     </li>
-                    <li class="pc-item">
-                        <a href="{{ route('transaksi.index') }}" class="pc-link">
-                            <span class="pc-micon">
-                                <i class="ti ti-cash-register"></i>
-                            </span>
-                            <span class="pc-mtext">Jurnal Umum</span>
-                        </a>
-                    </li>
-                    {{-- <li class="pc-item">
-                        <a href="#" class="pc-link">
-                            <span class="pc-micon">
-                                <i class="ti ti-coin"></i>
-                            </span>
-                            <span class="pc-mtext">Pemasukan</span>
-                        </a>
-                    </li>
-                    <li class="pc-item">
-                        <a href="#" class="pc-link">
-                            <span class="pc-micon">
-                                <i class="ti ti-coin-off"></i>
-                            </span>
-                            <span class="pc-mtext">Pengeluaran</span>
-                        </a>
-                    </li> --}}
+                    @if (Auth::user()->level != 'tu')
+                        <li class="pc-item">
+                            <a href="{{ route('transaksi.index') }}" class="pc-link">
+                                <span class="pc-micon">
+                                    <i class="ti ti-cash-register"></i>
+                                </span>
+                                <span class="pc-mtext">Jurnal Umum</span>
+                            </a>
+                        </li>
+                    @endif
 
-                    <li class="pc-item pc-caption">
-                        <label>Master Data</label>
-                        <i class="ti ti-database"></i>
-                    </li>
-                    <li class="pc-item">
-                        <a href="{{ route('master.account.index') }}" class="pc-link">
-                            <span class="pc-micon">
-                                <i class="ti ti-folder-dollar"></i>
-                            </span>
-                            <span class="pc-mtext">Akun Keuangan</span>
-                        </a>
-                    </li>
-                    <li class="pc-item">
-                        <a href="{{ route('master.siswa.index') }}" class="pc-link">
-                            <span class="pc-micon">
-                                <i class="ti ti-user-square-rounded"></i>
-                            </span>
-                            <span class="pc-mtext">Murid & Wali Murid</span>
-                        </a>
-                    </li>
-                    <li class="pc-item">
-                        <a href="{{ route('master.guru.index') }}" class="pc-link">
-                            <span class="pc-micon">
-                                <i class="ti ti-school"></i>
-                            </span>
-                            <span class="pc-mtext">Guru/Staf</span>
-                        </a>
-                    </li>
+                    @if (Auth::user()->level != 'tu')
+                        <li class="pc-item pc-caption">
+                            <label>Laporan Keuangan</label>
+                            <i class="ti ti-database"></i>
+                        </li>
+                        <li class="pc-item">
+                            <a href="#" class="pc-link">
+                                <span class="pc-micon">
+                                    <i class="ti ti-report-analytics"></i>
+                                </span>
+                                <span class="pc-mtext">Neraca</span>
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a href="#" class="pc-link">
+                                <span class="pc-micon">
+                                    <i class="ti ti-report-money"></i>
+                                </span>
+                                <span class="pc-mtext">Jurnal Umum</span>
+                            </a>
+                        </li>
+                    @endif
+
+                    @if (Auth::user()->level == 'admin')
+                        <li class="pc-item pc-caption">
+                            <label>Master Data</label>
+                            <i class="ti ti-database"></i>
+                        </li>
+                        <li class="pc-item">
+                            <a href="{{ route('master.account.index') }}" class="pc-link">
+                                <span class="pc-micon">
+                                    <i class="ti ti-folder-dollar"></i>
+                                </span>
+                                <span class="pc-mtext">Akun Keuangan</span>
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a href="{{ route('master.siswa.index') }}" class="pc-link">
+                                <span class="pc-micon">
+                                    <i class="ti ti-user-square-rounded"></i>
+                                </span>
+                                <span class="pc-mtext">Murid & Wali Murid</span>
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a href="{{ route('master.guru.index') }}" class="pc-link">
+                                <span class="pc-micon">
+                                    <i class="ti ti-school"></i>
+                                </span>
+                                <span class="pc-mtext">Guru/Staf</span>
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a href="{{ route('master.user.index') }}" class="pc-link">
+                                <span class="pc-micon">
+                                    <i class="ti ti-users"></i>
+                                </span>
+                                <span class="pc-mtext">User</span>
+                            </a>
+                        </li>
+                    @endif
                     
                 </ul>
                 <div class="w-100 text-center">
@@ -155,25 +166,27 @@
             <div class="ms-auto">
                 <ul class="list-unstyled">
                     <li class="dropdown pc-h-item header-user-profile">
-                        <a class="pc-head-link head-link-primary dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                            <img src="{{ asset('assets/images/user/avatar-2.jpg') }}" alt="user-image" class="user-avtar" />
-                            <span>
-                                <i class="ti ti-settings"></i>
-                            </span>
+                        <a class="pc-head-link head-link-primary dropdown-toggle arrow-none me-0 d-flex align-items-center gap-2" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <i class="ti ti-user-square-rounded fs-1"></i>
+                            <i class="ti ti-settings fs-1"></i>
                         </a>
                         <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
                             <div class="dropdown-header">
-                                <h4>
-                                    Good Morning,
-                                    <span class="small text-muted">John Doe</span>
-                                </h4>
-                                <p class="text-muted">Admin</p>
+                                <h4>{{ Auth::user()->name }}</h4>
+                                <p class="text-muted">
+                                    {{ Auth::user()->level == 'admin' ? '' : 'Staff ' }}
+                                    {{ Auth::user()->level == 'tu' ? strtoupper(Auth::user()->level) : ucwords(Auth::user()->level) }}
+                                </p>
                                 <hr />
                                 <div class="profile-notification-scroll position-relative" style="max-height: calc(100vh - 280px)">
-                                    <a href="#" class="dropdown-item">
-                                        <i class="ti ti-logout"></i>
-                                        <span>Logout</span>
-                                    </a>
+                                    <form action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        @method('POST')
+                                        <button class="dropdown-item">
+                                            <i class="ti ti-logout"></i>
+                                            <span>Logout</span>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -255,7 +268,6 @@
     <script src="{{ asset('assets/js/plugins/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
     <script src="{{ asset('assets/js/theme.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/feather.min.js') }}"></script>
 
     <script>
         change_box_container('false');

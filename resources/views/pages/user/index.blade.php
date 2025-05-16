@@ -1,11 +1,11 @@
 @extends('layout.app')
 
-@section('title', 'Kelola Data Guru')
+@section('title', 'Kelola User')
 
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="#">Home</a></li>
     <li class="breadcrumb-item" aria-current="page">Master</li>
-    <li class="breadcrumb-item active" aria-current="page">Guru</li>
+    <li class="breadcrumb-item active" aria-current="page">User</li>
 @endsection
 
 @section('content')
@@ -15,10 +15,10 @@
                 <div class="card card-primary card-outline">
                     <div class="card-header py-3">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="card-title">Kelola Data Guru</h5>
-                            <a href="{{ route('master.guru.create') }}" class="btn btn-outline-primary d-flex gap-2 align-items-center">
+                            <h5 class="card-title">Kelola User</h5>
+                            <a href="{{ route('master.user.create') }}" class="btn btn-outline-primary d-flex gap-2 align-items-center">
                                 <i class="ti ti-library-plus"></i>
-                                Guru Baru
+                                User Baru
                             </a>
                         </div>
                     </div>
@@ -28,29 +28,25 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>NIP</th>
-                                        <th>Nama Lengkap</th>
-                                        <th>Jenis Kelamin</th>
-                                        <th>No HP</th>
-                                        <th>Alamat</th>
+                                        <th>Nama</th>
+                                        <th>Username</th>
+                                        <th>Level</th>
                                         <th class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php $no = 1 @endphp
-                                    @foreach($data as $guru)
+                                    @foreach($data as $user)
                                         <tr>
                                             <td>{{ $no++ }}</td>
-                                            <td>{{ $guru->nip }}</td>
-                                            <td>{{ $guru->nama_lengkap }}</td>
-                                            <td>{{ $guru->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
-                                            <td>{{ $guru->no_hp }}</td>
-                                            <td>{{ $guru->alamat }}</td>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->username }}</td>
+                                            <td>{{ strlen($user->level) <= 3 ? strtoupper($user->level) : ucwords($user->level) }}</td>
                                             <td class="d-flex gap-2 justify-content-center">
-                                                <a href="{{ route('master.guru.edit', $guru->id) }}" class="btn btn-light-primary btn-sm">
+                                                <a href="{{ route('master.user.edit', $user->id) }}" class="btn btn-light-primary btn-sm">
                                                     <i class="ti ti-edit"></i>
                                                 </a>
-                                                <form action="{{ route('master.guru.destroy', $guru->id) }}" method="POST" onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?');">
+                                                <form action="{{ route('master.user.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?');">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-light-danger btn-sm">

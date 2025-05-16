@@ -132,11 +132,11 @@
                             </tbody>
                         </table>
                         <div class="d-flex justify-content-end gap-2">
-                            <a href="#" data-bs-dismiss="modal" class="btn btn-outline-danger d-flex align-items-center gap-2">
+                            <a href="#" data-bs-dismiss="modal" class="btn btn-light-danger d-flex align-items-center gap-2">
                                 <i class="ti ti-x"></i>
                                 Batal
                             </a>
-                            <button class="btn btn-outline-primary d-flex align-items-center gap-2">
+                            <button class="btn btn-light-primary d-flex align-items-center gap-2">
                                 <i class="ti ti-device-floppy"></i>
                                 Simpan
                             </button>

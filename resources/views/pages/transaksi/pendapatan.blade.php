@@ -67,7 +67,7 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end gap-2">
-                                <button class="btn btn-primary d-flex align-items-center gap-2">
+                                <button class="btn btn-light-primary d-flex align-items-center gap-2">
                                     <i class="ti ti-device-floppy"></i>
                                     Simpan
                                 </button>

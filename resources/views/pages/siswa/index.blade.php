@@ -53,16 +53,16 @@
                                             <td>{{ $siswa->alamat }}</td>
                                             <td>{{ $siswa->waliMurid->nama_ayah ?? '' }} - {{ $siswa->waliMurid->nama_ibu ?? '' }}</td>
                                             <td class="d-flex gap-2 justify-content-center">
-                                                <button class="btn btn-outline-info btn-sm" onclick="return getWaliMurid({{ $siswa->id }})" data-bs-toggle="tooltip" data-bs-title="Kelola Wali Murid" data-bs-placement="top" title="Kelola Data Wali Murid">
+                                                <button class="btn btn-light-info btn-sm" onclick="return getWaliMurid({{ $siswa->id }})" data-bs-toggle="tooltip" data-bs-title="Kelola Wali Murid" data-bs-placement="top" title="Kelola Data Wali Murid">
                                                     <i class="ti ti-users"></i>
                                                 </button>
-                                                <a href="{{ route('master.siswa.edit', $siswa->id) }}" class="btn btn-outline-primary btn-sm" data-bs-toggle="tooltip" data-bs-title="Edit Data Siswa" data-bs-placement="top" title="Edit Data Siswa">
+                                                <a href="{{ route('master.siswa.edit', $siswa->id) }}" class="btn btn-light-primary btn-sm" data-bs-toggle="tooltip" data-bs-title="Edit Data Siswa" data-bs-placement="top" title="Edit Data Siswa">
                                                     <i class="ti ti-edit"></i>
                                                 </a>
                                                 <form action="{{ route('master.siswa.destroy', $siswa->id) }}" method="POST" onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?');">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-outline-danger btn-sm" data-bs-toggle="tooltip" data-bs-title="Hapus Data Siswa" data-bs-placement="top" title="Hapus Data Siswa">
+                                                    <button type="submit" class="btn btn-light-danger btn-sm" data-bs-toggle="tooltip" data-bs-title="Hapus Data Siswa" data-bs-placement="top" title="Hapus Data Siswa">
                                                         <i class="ti ti-trash"></i>
                                                     </button>
                                                 </form>
@@ -110,7 +110,7 @@
                             <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email wali murid" required>
                         </div>
                         <div class="mb-3 d-flex justify-content-between">
-                            <a href="#" class="btn btn-outline-secondary d-flex gap-2 align-items-center" data-bs-dismiss="modal">
+                            <a href="#" class="btn btn-light-secondary d-flex gap-2 align-items-center" data-bs-dismiss="modal">
                                 <i class="ti ti-x"></i>
                                 Batal
                             </a>

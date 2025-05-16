@@ -41,13 +41,13 @@
                                     @foreach($data as $akun)
                                         <tr class="py-0">
                                             <td class="d-flex gap-2 justify-content-center">
-                                                <a href="{{ route('master.account.edit', $akun->id) }}" class="btn btn-outline-primary btn-sm">
+                                                <a href="{{ route('master.account.edit', $akun->id) }}" class="btn btn-light-primary btn-sm">
                                                     <i class="ti ti-edit"></i>
                                                 </a>
                                                 <form action="{{ route('master.account.destroy', $akun->id) }}" method="POST" onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?');">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-outline-danger btn-sm">
+                                                    <button type="submit" class="btn btn-light-danger btn-sm">
                                                         <i class="ti ti-trash"></i>
                                                     </button>
                                                 </form>
