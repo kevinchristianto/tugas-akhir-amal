@@ -157,27 +157,27 @@ class TransaksiController extends Controller
         $data['printed_at'] = now()->format('d F Y, H:i:s');
         $data['nama_akun'] = $nama_akun;
         $pdf = Pdf::loadView('pages.print.kuitansi', $data);
-        return $pdf->stream();
 
         $month = now()->format('F Y');
         if (!Storage::disk('local')->exists('kuitansi/' . $month)) {
             Storage::disk('local')->makeDirectory('kuitansi/' . $month);
         }
+        
         $filename = storage_path('app/private/kuitansi/' . $month . '/' . $data['siswa']['nis'] . '_' . time() . '.pdf');
         $pdf->save($filename);
 
         $urlencoded_filename = urlencode($filename);
-        echo "<script>window.open('" . route('stream-spp', ['filename' => $urlencoded_filename]) . "', '_blank')</script>";
+        request()->session()->flash('download_kuitansi', $urlencoded_filename);
 
         if (WaliMurid::where('siswa_id', $data['siswa']['id'])->exists()) {
             $email = WaliMurid::where('siswa_id', $data['siswa']['id'])->first()->email;
 
             Mail::to($email)->send(new Kuitansi($data, $filename));
 
-            return redirect()->route('transaksi.spp')->with('success', 'Kuitansi pembayaran SPP berhasil dikirimkan ke ' . $email);
+            return redirect()->route('transaksi.pendapatan')->with('success', 'Kuitansi pembayaran SPP berhasil dikirimkan ke ' . $email);
         }
 
-        return redirect()->route('transaksi.spp')->with('error', 'Pembayaran SPP berhasil disimpan, namun kuitansi tidak dapat dikirimkan karena siswa terkait tidak memiliki wali murid yang terdata.');
+        return redirect()->route('transaksi.pendapatan')->with('error', 'Pembayaran SPP berhasil disimpan, namun kuitansi tidak dapat dikirimkan karena siswa terkait tidak memiliki wali murid yang terdata.');
     }
 
     public function stream_spp(Request $request)

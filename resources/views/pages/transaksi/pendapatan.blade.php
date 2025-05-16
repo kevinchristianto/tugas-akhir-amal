@@ -103,6 +103,10 @@
                 'radixPoint': ',',
                 'digitsOptional': true,
             })
+
+            @if (session()->has('download_kuitansi'))
+                window.open('{{ route('stream-spp', ['filename' => session()->get('download_kuitansi')]) }}', '_blank')
+            @endif
         })
     </script>
 @endsection

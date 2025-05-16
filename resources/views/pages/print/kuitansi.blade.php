@@ -124,7 +124,7 @@
             </tr>
             <tr style="border-top: 1px solid #333">
                 <td colspan="2" style="padding: 1mm 0 1mm 10mm">
-                    <h3 style="margin: 0"> Biaya {{ $nama_akun }}</h3>
+                    <h3 style="margin: 0"> Pembayaran Biaya {{ $nama_akun }}</h3>
                     {{ $transaksi['deskripsi'] }}
                 </td>
                 <td style="text-align: right; padding: 1mm 10mm 1mm 0">
