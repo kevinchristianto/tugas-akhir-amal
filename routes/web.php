@@ -3,6 +3,7 @@
 use App\Http\Controllers\ChartOfAccountController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuruController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\TransaksiController;
@@ -26,6 +27,10 @@ Route::middleware('auth')->group(function() {
     Route::get('transaksi/pendapatan', [TransaksiController::class, 'pendapatan'])->name('transaksi.pendapatan');
     Route::post('transaksi/pendapatan', [TransaksiController::class, 'store_pendapatan'])->name('transaksi.store_pendapatan');
     Route::get('print-spp', [TransaksiController::class, 'stream_spp'])->name('stream-spp');
+
+    Route::name('laporan.')->prefix('laporan')->group(function () {
+        Route::get('neraca', [LaporanController::class, 'neraca'])->name('neraca');
+    });
 });
 
 Route::get('login', [LoginController::class, 'login'])->name('login');

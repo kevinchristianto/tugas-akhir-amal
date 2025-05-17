@@ -37,4 +37,17 @@ class ChartOfAccount extends Model
             }
         );
     }
+
+    public function getSaldoAkhirAttribute()
+    {
+        $debit = $this->detail_transaksi->sum('debit');
+        $kredit = $this->detail_transaksi->sum('kredit');
+
+        return match($this->saldo_normal) {
+            'debit' => $debit - $kredit,
+            'kredit' => $kredit - $debit,
+            default => 0,
+        };
+    }
+
 }

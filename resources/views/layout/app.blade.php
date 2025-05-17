@@ -81,7 +81,7 @@
                             <i class="ti ti-database"></i>
                         </li>
                         <li class="pc-item">
-                            <a href="#" class="pc-link">
+                            <a href="{{ route('laporan.neraca') }}" class="pc-link">
                                 <span class="pc-micon">
                                     <i class="ti ti-report-analytics"></i>
                                 </span>
