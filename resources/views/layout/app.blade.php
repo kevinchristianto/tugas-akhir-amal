@@ -75,29 +75,6 @@
                         </li>
                     @endif
 
-                    @if (Auth::user()->level != 'tu')
-                        <li class="pc-item pc-caption">
-                            <label>Laporan Keuangan</label>
-                            <i class="ti ti-database"></i>
-                        </li>
-                        <li class="pc-item">
-                            <a href="{{ route('laporan.neraca') }}" class="pc-link">
-                                <span class="pc-micon">
-                                    <i class="ti ti-report-analytics"></i>
-                                </span>
-                                <span class="pc-mtext">Neraca</span>
-                            </a>
-                        </li>
-                        <li class="pc-item">
-                            <a href="#" class="pc-link">
-                                <span class="pc-micon">
-                                    <i class="ti ti-report-money"></i>
-                                </span>
-                                <span class="pc-mtext">Jurnal Umum</span>
-                            </a>
-                        </li>
-                    @endif
-
                     @if (Auth::user()->level == 'admin')
                         <li class="pc-item pc-caption">
                             <label>Master Data</label>
@@ -133,6 +110,37 @@
                                     <i class="ti ti-users"></i>
                                 </span>
                                 <span class="pc-mtext">User</span>
+                            </a>
+                        </li>
+                    @endif
+
+                    @if (Auth::user()->level != 'tu')
+                        <li class="pc-item pc-caption">
+                            <label>Laporan Keuangan</label>
+                            <i class="ti ti-database"></i>
+                        </li>
+                        <li class="pc-item">
+                            <a href="{{ route('laporan.neraca') }}" class="pc-link">
+                                <span class="pc-micon">
+                                    <i class="ti ti-report-analytics"></i>
+                                </span>
+                                <span class="pc-mtext">Neraca</span>
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a href="{{ route('laporan.arus-kas') }}" class="pc-link">
+                                <span class="pc-micon">
+                                    <i class="ti ti-cash-move"></i>
+                                </span>
+                                <span class="pc-mtext">Arus Kas</span>
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a href="{{ route('laporan.jurnal-umum') }}" class="pc-link">
+                                <span class="pc-micon">
+                                    <i class="ti ti-report-money"></i>
+                                </span>
+                                <span class="pc-mtext">Jurnal Umum</span>
                             </a>
                         </li>
                     @endif

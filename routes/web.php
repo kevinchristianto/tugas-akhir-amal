@@ -30,9 +30,14 @@ Route::middleware('auth')->group(function() {
 
     Route::name('laporan.')->prefix('laporan')->group(function () {
         Route::get('neraca', [LaporanController::class, 'neraca'])->name('neraca');
+        Route::get('arus-kas', [LaporanController::class, 'arus_kas'])->name('arus-kas');
+        Route::get('jurnal-umum', [LaporanController::class, 'jurnal_umum'])->name('jurnal-umum');
     });
+
+    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 });
 
-Route::get('login', [LoginController::class, 'login'])->name('login');
-Route::post('authenticate', [LoginController::class, 'authenticate'])->name('authenticate');
-Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+Route::middleware('guest')->group(function() {
+    Route::get('login', [LoginController::class, 'login'])->name('login');
+    Route::post('authenticate', [LoginController::class, 'authenticate'])->name('authenticate');
+});

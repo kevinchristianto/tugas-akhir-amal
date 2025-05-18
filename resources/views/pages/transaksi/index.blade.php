@@ -108,7 +108,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @for ($i = 0; $i < 2; $i++)
+                                @for ($i = 1; $i < 3; $i++)
                                     <tr>
                                         <td>
                                             <select name="account[]" class="form-control" required>
@@ -119,10 +119,10 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <input type="text" name="debit[]" class="form-control currency" required value="0">
+                                            <input type="text" name="debit[]" class="form-control currency" id="debit-{{ $i }}" required value="0">
                                         </td>
                                         <td>
-                                            <input type="text" name="kredit[]" class="form-control currency" required value="0">
+                                            <input type="text" name="kredit[]" class="form-control currency" id="kredit-{{ $i }}" required value="0">
                                         </td>
                                         <td>
                                             <textarea name="keterangan[]" class="form-control" rows="2" placeholder="Tidak ada keterangan"></textarea>
@@ -170,6 +170,19 @@
                 'groupSeparator': '.',
                 'radixPoint': ',',
                 'digitsOptional': true,
+            })
+
+            $('#debit-1').on('keyup', function () {
+                val = $(this).val()
+                $('#kredit-2').inputmask('setvalue', val)
+                $('#debit-2').inputmask('setvalue', '0')
+                $('#kredit-1').inputmask('setvalue', '0')
+            })
+            $('#kredit-1').on('keyup', function () {
+                val = $(this).val()
+                $('#debit-2').inputmask('setvalue', val)
+                $('#kredit-2').inputmask('setvalue', '0')
+                $('#debit-1').inputmask('setvalue', '0')
             })
         })
     </script>

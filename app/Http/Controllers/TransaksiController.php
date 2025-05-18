@@ -54,7 +54,7 @@ class TransaksiController extends Controller
         $transaksi = Transaksi::create([
             'tanggal' => $validated['tanggal'],
             'nomor_transaksi' => $validated['nomor_transaksi'],
-            'deskripsi' => $validated['deskripsi'] ?? 'Tidak ada keterangan',
+            'deskripsi' => $validated['deskripsi'] ?? '-',
             'tipe_transaksi' => $validated['jenis_transaksi'],
         ]);
         foreach ($request->get('account') as $key => $account) {
@@ -63,7 +63,7 @@ class TransaksiController extends Controller
                 'chart_of_account_id' => $account,
                 'kredit' => $request->get('kredit')[$key],
                 'debit' => $request->get('debit')[$key],
-                'deskripsi' => $request->get('keterangan')[$key],
+                'deskripsi' => $request->get('keterangan')[$key] ?? '-',
             ];
 
             DetailTransaksi::create($data);
@@ -98,7 +98,11 @@ class TransaksiController extends Controller
             'nominal' => 'required|numeric',
             'deskripsi' => 'required|string'
         ]);
+
         $siswa = Siswa::find($validated['siswa_id']);
+        $akun_pendapatan = ChartOfAccount::find($validated['akun_pendapatan']);
+        $nama_akun_pendapatan = str_replace('Pendapatan ', '', $akun_pendapatan->nama_akun);
+        
         $transaksi = Transaksi::create([
             'tanggal' => $validated['tanggal'],
             'nomor_transaksi' => $validated['nomor_transaksi'],
@@ -116,14 +120,14 @@ class TransaksiController extends Controller
                 'chart_of_account_id' => $validated['akun_pendapatan'],
                 'kredit' => $validated['nominal'],
                 'debit' => 0,
-                'deskripsi' => 'Tidak ada keterangan',
+                'deskripsi' => 'Pembayaran biaya ' . $nama_akun_pendapatan . ' siswa a.n. ' . $siswa['nama_siswa'],
             ],
             [
                 'transaksi_id' => $transaksi->id,
                 'chart_of_account_id' => $validated['akun_kas'],
                 'kredit' => 0,
                 'debit' => $validated['nominal'],
-                'deskripsi' => 'Tidak ada keterangan',
+                'deskripsi' => 'Pembayaran ' . $nama_akun_pendapatan . ' siswa a.n. ' . $siswa['nama_siswa'],
             ]
         ], []);
 
