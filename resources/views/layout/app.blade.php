@@ -96,14 +96,14 @@
                                 <span class="pc-mtext">Murid & Wali Murid</span>
                             </a>
                         </li>
-                        <li class="pc-item">
+                        <!-- <li class="pc-item">
                             <a href="{{ route('master.guru.index') }}" class="pc-link">
                                 <span class="pc-micon">
                                     <i class="ti ti-school"></i>
                                 </span>
                                 <span class="pc-mtext">Guru/Staf</span>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="pc-item">
                             <a href="{{ route('master.user.index') }}" class="pc-link">
                                 <span class="pc-micon">

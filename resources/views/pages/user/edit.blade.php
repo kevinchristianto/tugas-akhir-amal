@@ -39,14 +39,14 @@
                                 <input type="password" class="form-control" id="password-confirmation" name="password_confirmation" placeholder="Masukkan password">
                                 <small class="text-muted">Biarkan kosong apabila tidak ingin mengubah password</small>
                             </div>
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label for="level" class="form-label">Level</label>
                                 <select class="form-select" id="level" name="level" required>
                                     <option value="admin" {{ $user->level == 'admin' ? 'selected' : null }}>Admin</option>
                                     <option value="keuangan" {{ $user->level == 'keuangan' ? 'selected' : null }}>Staff Keuangan</option>
                                     <option value="tu" {{ $user->level == 'tu' ? 'selected' : null }}>Staff Tata Usaha</option>
                                 </select>
-                            </div>
+                            </div> -->
                             <div class="d-flex flex-row justify-content-between">
                                 <a href="{{ route('master.user.index') }}" class="btn btn-light-secondary d-flex gap-2 align-items-center">
                                     <i class="ti ti-chevron-left"></i>

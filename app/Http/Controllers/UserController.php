@@ -35,8 +35,9 @@ class UserController extends Controller
             'name' => 'required',
             'username' => 'required|unique:users',
             'password' => 'required|confirmed',
-            'level' => 'required|in:admin,keuangan,tu',
+            // 'level' => 'required|in:admin,keuangan,tu',
         ]);
+        $validated['level'] = 'admin';
 
         $user = User::create($validated);
 
@@ -63,7 +64,7 @@ class UserController extends Controller
                 Rule::unique('users')->ignore($user->id),
             ],
             'password' => 'nullable|confirmed',
-            'level' => 'required|in:admin,keuangan,tu',
+            // 'level' => 'required|in:admin,keuangan,tu',
         ]);
 
         if ($validated['password']) {

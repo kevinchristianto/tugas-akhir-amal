@@ -30,7 +30,7 @@
                                         <th>No</th>
                                         <th>Nama</th>
                                         <th>Username</th>
-                                        <th>Level</th>
+                                        <!-- <th>Level</th> -->
                                         <th class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
@@ -41,7 +41,7 @@
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->username }}</td>
-                                            <td>{{ strlen($user->level) <= 3 ? strtoupper($user->level) : ucwords($user->level) }}</td>
+                                            <!-- <td>{{ strlen($user->level) <= 3 ? strtoupper($user->level) : ucwords($user->level) }}</td> -->
                                             <td class="d-flex gap-2 justify-content-center">
                                                 <a href="{{ route('master.user.edit', $user->id) }}" class="btn btn-light-primary btn-sm">
                                                     <i class="ti ti-edit"></i>
