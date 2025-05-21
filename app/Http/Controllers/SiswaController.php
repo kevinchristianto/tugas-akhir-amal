@@ -48,14 +48,6 @@ class SiswaController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Siswa $siswa)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Siswa $siswa)
